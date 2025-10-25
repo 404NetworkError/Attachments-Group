@@ -18,7 +18,7 @@ export interface IGalleryProps {
     close: (trigger: string) => void;
 }
 
-export class Gallery extends React.Component<IGalleryProps, {}> {
+export class Gallery extends React.Component<IGalleryProps, object> {
     public render() {
         const {previewFiles, idx, setTitle} = this.props;
         const file = previewFiles[idx];

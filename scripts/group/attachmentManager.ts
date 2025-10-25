@@ -193,7 +193,7 @@ export async function deleteAttachments(trigger: string, files: IFileAttachment[
             return;
         }
 
-        async function deleteFiles(id: number | null, wiFiles: IFileAttachment[]): Promise<WorkItem | null> {
+        const deleteFiles = async (id: number | null, wiFiles: IFileAttachment[]): Promise<WorkItem | null> => {
             if (!id || wiFiles.length === 0) {
                 return null;
             }

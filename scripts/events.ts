@@ -46,5 +46,5 @@ export function trackPage(properties?: IProperties, measurements?: IMeasurements
 }
 function getInsights(): Microsoft.ApplicationInsights.IAppInsights | undefined {
     // tslint:disable-next-line:no-string-literal
-    return window["appInsights"];
+    return window.appInsights;
 }

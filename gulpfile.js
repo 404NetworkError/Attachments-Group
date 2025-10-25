@@ -27,11 +27,12 @@ gulp.task('clean', gulp.series(() => {
         });
 }));
 
-gulp.task('eslint', gulp.series(() => {
+gulp.task('eslint', gulp.series((done) => {
     try {
         execSync('npx eslint "scripts/**/*.{ts,tsx}" --fix', {
             stdio: [null, process.stdout, process.stderr]
         });
+        done();
     } catch (err) {
         console.error('ESLint failed: ', err);
         process.exit(1);

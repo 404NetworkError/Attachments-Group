@@ -20,7 +20,7 @@ export interface IFileThumbNailProps {
 let isShift: boolean = false;
 let isCtr: boolean = false;
 
-export class FileThumbNail extends React.Component<IFileThumbNailProps, {}> {
+export class FileThumbNail extends React.Component<IFileThumbNailProps, object> {
     public render() {
         const file = this.file();
         const isImage: boolean = isImageFile(file);

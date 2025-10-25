@@ -2,22 +2,22 @@ import { IWorkItemNotificationListener } from "TFS/WorkItemTracking/ExtensionCon
 import { refreshAttachments } from "./attachmentManager";
 
 export class AttachmentGroupFormEvents implements IWorkItemNotificationListener {
-    public onLoaded(/*workItemLoadedArgs: IWorkItemLoadedArgs*/): void {
+    public onLoaded(/* workItemLoadedArgs: IWorkItemLoadedArgs*/): void {
         refreshAttachments();
     }
-    public onFieldChanged(/*fieldChangedArgs: IWorkItemFieldChangedArgs*/): void {
+    public onFieldChanged(/* fieldChangedArgs: IWorkItemFieldChangedArgs*/): void {
         // noop
     }
-    public onSaved(/*savedEventArgs: IWorkItemChangedArgs*/): void {
+    public onSaved(/* savedEventArgs: IWorkItemChangedArgs*/): void {
         refreshAttachments();
     }
-    public onRefreshed(/*refreshEventArgs: IWorkItemChangedArgs*/): void {
+    public onRefreshed(/* refreshEventArgs: IWorkItemChangedArgs*/): void {
         refreshAttachments();
     }
-    public onReset(/*undoEventArgs: IWorkItemChangedArgs*/): void {
+    public onReset(/* undoEventArgs: IWorkItemChangedArgs*/): void {
         // noop
     }
-    public onUnloaded(/*unloadedEventArgs: IWorkItemChangedArgs*/): void {
+    public onUnloaded(/* unloadedEventArgs: IWorkItemChangedArgs*/): void {
         // noop
     }
 }
