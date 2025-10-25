@@ -1,6 +1,7 @@
 import { defineConfig } from "eslint/config";
 import jsdoc from "eslint-plugin-jsdoc";
 import preferArrow from "eslint-plugin-prefer-arrow";
+import stylistic from '@stylistic/eslint-plugin';
 import typescriptEslint from "@typescript-eslint/eslint-plugin";
 import globals from "globals";
 import tsParser from "@typescript-eslint/parser";
@@ -27,6 +28,7 @@ export default defineConfig([{
     plugins: {
         jsdoc,
         "prefer-arrow": preferArrow,
+        "@stylistic": stylistic,
         "@typescript-eslint": typescriptEslint,
     },
 
@@ -45,6 +47,17 @@ export default defineConfig([{
     },
 
     rules: {
+        "@stylistic/new-parens": "error",
+        "@stylistic/no-trailing-spaces": "error",
+
+        "@stylistic/spaced-comment": ["error", "always", {
+            block: {
+                balanced: true
+            },
+            
+            markers: ["/"],
+        }],
+
         "@typescript-eslint/adjacent-overload-signatures": "error",
         "@typescript-eslint/array-type": "off",
 
@@ -142,7 +155,6 @@ export default defineConfig([{
         }],
 
         "max-classes-per-file": "off",
-        "new-parens": "error",
         "no-bitwise": "error",
         "no-caller": "error",
         "no-cond-assign": "error",
@@ -156,7 +168,6 @@ export default defineConfig([{
         "no-new-wrappers": "error",
         "no-shadow": "off",
         "no-throw-literal": "error",
-        "no-trailing-spaces": "error",
         "no-undef-init": "error",
         "no-underscore-dangle": "off",
         "no-unsafe-finally": "error",
@@ -173,10 +184,6 @@ export default defineConfig([{
 
         "prefer-const": "error",
         radix: "error",
-
-        "spaced-comment": ["error", "always", {
-            markers: ["/"],
-        }],
 
         "use-isnan": "error",
         "valid-typeof": "off",
