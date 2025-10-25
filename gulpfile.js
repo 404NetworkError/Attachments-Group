@@ -5,8 +5,7 @@ const yargs = require('yargs');
 const { execSync, exec } = require('child_process');
 const rename = require('gulp-rename');
 const sass = require('gulp-sass');
-const tslint = require('gulp-tslint');
-const inlinesource = require('gulp-inline-source');
+const eslint = require('eslint');
 
 const args = yargs.argv;
 
@@ -28,13 +27,15 @@ gulp.task('clean', gulp.series(() => {
         });
 }));
 
-gulp.task('tslint', gulp.series(() => {
-    return gulp.src(["scripts/**/*ts", "scripts/**/*tsx"])
-        .pipe(tslint({
-            formatter: "verbose",
-            fix: true,
-        }))
-        .pipe(tslint.report());
+gulp.task('eslint', gulp.series(() => {
+    try {
+        execSync('npx eslint "scripts/**/*.{ts,tsx}" --fix', {
+            stdio: [null, process.stdout, process.stderr]
+        });
+    } catch (err) {
+        console.error('ESLint failed: ', err);
+        process.exit(1);
+    }
 }));
 
 gulp.task('styles', gulp.parallel(async () => {
@@ -52,13 +53,12 @@ gulp.task('copy', gulp.series(() => {
         .pipe(gulp.dest(distFolder));
 }));
 
-gulp.task('build', gulp.series(gulp.parallel('styles', 'tslint', 'copy'), () => {
+gulp.task('build', gulp.series(gulp.parallel('styles', 'eslint', 'copy'), () => {
     const option = args.release ? "-p" : "-d eval-source-map";
     execSync(`node ./node_modules/webpack-cli/bin/cli.js ${option}`, {
         stdio: [null, process.stdout, process.stderr]
     });
     return gulp.src("*.html")
-        .pipe(inlinesource())
         .pipe(gulp.dest(distFolder));
 }));
 

@@ -1,4 +1,4 @@
-@import "colors";
+@use "colors";
 
 .info {
     float: right;
@@ -7,8 +7,8 @@
     }
     .callout {
         font-family: "-apple-system",BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Ubuntu,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-        @include color(black);
-        @include border(solid, 2px, lightgray);
+        @include colors.color(black);
+        @include colors.border(solid, 2px, lightgray);
         text-align: center;
         position: absolute;
         z-index: 1;
@@ -16,7 +16,7 @@
         right: 0px;
         max-width: 100%;
         margin-left: -100px;
-        @include background-color(white);
+        @include colors.background-color(white);
         padding: 8px;
         .message {
             margin-bottom: 10px;
@@ -32,7 +32,7 @@
         flex-wrap: wrap;
         min-height: 78px;
         &.dropping-files {
-            @include background-color(aliceblue);
+            @include colors.background-color(aliceblue);
         }
         .thumbnail-tile {
             margin: 5px;
@@ -42,10 +42,10 @@
             height: 130px;
             position: relative;
             &:focus, &.selected {
-                @include background-color(darkaliceblue);
+                @include colors.background-color(darkaliceblue);
             }
             &:hover {
-                @include border(1px, solid, black);
+                @include colors.border(1px, solid, black);
             }
             &:not(:hover) {
                 .title .delete-button {
@@ -57,17 +57,17 @@
             }
             .options {
                 position: absolute;
-                @include background-color(white);
+                @include colors.background-color(white);
                 top: 0px;
                 right: 0px;
                 .ms-Button-menuIcon {
                     display: none;
                 }
                 &:focus {
-                    @include border(1px, solid, black);
+                    @include colors.border(1px, solid, black);
                 }
                 &:hover {
-                    @include background-color(aliceblue);
+                    @include colors.background-color(aliceblue);
                 }
             }
             .thumb-box {
@@ -85,7 +85,7 @@
                     }
                 }
                 .thumbnail.file {
-                    @include color(black);
+                    @include colors.color(black);
                     font-size: 95px;
                 }
                 .overlay {
@@ -93,17 +93,17 @@
                     top: 0px;
                     left: 0px;
                     font-size: 95px;
-                    @include color(white);
+                    @include colors.color(white);
                     text-shadow:
-                        -1px -1px 0 getColorLiteral(black),
-                        1px -1px 0 getColorLiteral(black),
-                        -1px 1px 0 getColorLiteral(black),
-                        1px 1px 0 getColorLiteral(black);
+                        -1px -1px 0 colors.getColorLiteral(black),
+                        1px -1px 0 colors.getColorLiteral(black),
+                        -1px 1px 0 colors.getColorLiteral(black),
+                        1px 1px 0 colors.getColorLiteral(black);
                     text-shadow:
-                        -1px -1px 0 getColorVariable(black),
-                        1px -1px 0 getColorVariable(black),
-                        -1px 1px 0 getColorVariable(black),
-                        1px 1px 0 getColorVariable(black);
+                        -1px -1px 0 colors.getColorVariable(black),
+                        1px -1px 0 colors.getColorVariable(black),
+                        -1px 1px 0 colors.getColorVariable(black),
+                        1px 1px 0 colors.getColorVariable(black);
                 }
             }
             .title {
@@ -125,33 +125,33 @@
             .add-button {
                 border: 1px solid transparent;
                 margin-top: 5px;
-                @include color(black);
+                @include colors.color(black);
                 .ms-button-icon {
-                    @include color(blue);
+                    @include colors.color(blue);
                 }
                 &:focus {
-                    @include background-color(aliceblue);
+                    @include colors.background-color(aliceblue);
                 }
                 &:hover {
-                    @include border(1px, solid, black);
+                    @include colors.border(1px, solid, black);
                 }
             }
         }
     }
     .error-message {
-        @include color(red);
+        @include colors.color(red);
     }
 }
 .ms-Callout .ms-ContextualMenu-list .ms-ContextualMenu-item button {
-    @include background-color(palette-neutral-0);
-    @include color(palette-neutral-100);
+    @include colors.background-color(palette-neutral-0);
+    @include colors.color(palette-neutral-100);
     &:hover:not([disabled]) {
-        @include background-color(palette-neutral-4);
+        @include colors.background-color(palette-neutral-4);
     }
     &:focus {
-        @include background-color(palette-neutral-4);
+        @include colors.background-color(palette-neutral-4);
     }
     .ms-Icon {
-        @include color(palette-primary);
+        @include colors.color(palette-primary);
     }
 }
