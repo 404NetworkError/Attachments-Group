@@ -50,7 +50,10 @@ gulp.task('styles', gulp.parallel(async () => {
 }));
 
 gulp.task('copy', gulp.series(() => {
-    return gulp.src('node_modules/vss-web-extension-sdk/lib/VSS.SDK.min.js')
+    return gulp.src([
+            'node_modules/azure-devops-extension-sdk/SDK.min.js',
+            'node_modules/azure-devops-extension-sdk/XDM.min.js'
+        ])
         .pipe(gulp.dest(distFolder));
 }));
 
