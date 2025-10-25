@@ -1,9 +1,9 @@
 To get started run 
 ```
-git clone https://github.com/ostreifel/Attachments-Group.git
+git clone https://github.com/404NetworkError/Attachments-Group.git
 cd Attachments-Group
-npm install -g typings tfx-cli
-npm install
+npm install -g tfx-cli@prerelease
+npm install --omit=optional
 npm run package-dev
 ```
 
