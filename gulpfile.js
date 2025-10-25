@@ -1,6 +1,6 @@
 const path = require('path');
 const gulp = require('gulp');
-const clean = require('gulp-clean');
+const fs = require('fs-extra');
 const yargs = require('yargs');
 const { execSync, exec } = require('child_process');
 const rename = require('gulp-rename');
@@ -13,8 +13,19 @@ const args = yargs.argv;
 const distFolder = 'dist';
 
 gulp.task('clean', gulp.series(() => {
-    return gulp.src([distFolder, '*.vsix'], { allowEmpty: true })
-        .pipe(clean());
+    return fs.remove(distFolder)
+        .then(() => {
+            return fs.readdir('.');
+        })
+        .then((files) => {
+            const vsixFiles = files.filter(file => file.endsWith('.vsix'));
+            if (vsixFiles.length > 0) {
+                return Promise.all(vsixFiles.map(file => fs.remove(path.join('.', file))));
+            }
+        })
+        .catch((err) => {
+            console.error('Error during cleanup: ', err);
+        });
 }));
 
 gulp.task('tslint', gulp.series(() => {
@@ -66,10 +77,10 @@ gulp.task('package', gulp.series('clean', 'build', async () => {
     exec(`tfx extension create ${overridesArg} ${manifestsArg} --rev-version`,
         (err, stdout, stderr) => {
             if (err) {
-                console.log('Error:', err);
+                console.log('Error: ', err);
             }
-            console.log('Output:', stdout);
-            console.log('Error Output:', stderr);
+            console.log('Output: ', stdout);
+            console.log('Error Output: ', stderr);
         });
 }));
 
